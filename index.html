@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBoyCloud Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">IBOYCLOUD</div>
+            <div class="progress-container"><div class="progress-bar" id="p-bar"></div></div>
+            <p id="loader-status">Initializing...</p>
+        </div>
+    </div>
+
+    <div id="welcome-overlay">
+        <h1 class="welcome-text">Welcome to<br><span>Payment Site</span></h1>
+    </div>
+
+    <div id="toast"><i class="fas fa-check-circle"></i> Berhasil disalin!</div>
+
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu IBoyCloud</h3>
+            <i class="fas fa-times close-btn" onclick="toggleSidebar()"></i>
+        </div>
+        <div class="sidebar-content">
+            <a href="https://lynk.id/bayzuu" target="_blank" class="side-link lynk-link">
+                <i class="fas fa-shopping-cart"></i> Beli Source Code
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbBsAy17T8bbFQZ9y410" target="_blank" class="side-link wa-link">
+                <i class="fab fa-whatsapp"></i> Channel WhatsApp
+            </a>
+            <a href="https://tiktok.com/@xiao_bayu" target="_blank" class="side-link tiktok-link">
+                <i class="fab fa-tiktok"></i> Akun TikTok
+            </a>
+        </div>
+    </div>
+
+    <div class="wrapper" id="mainContent">
+        
+        <div class="status-bar">
+            <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
+            <div class="battery-container">
+                <span id="bat-level">--%</span>
+                <i id="bat-icon" class="fas fa-battery-half"></i>
+                <i id="charge-icon" class="fas fa-bolt"></i>
+            </div>
+        </div>
+
+        <div class="header-banner">
+            <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+                <source src="picture/banner.mp4" type="video/mp4">
+                <source src="https://files.catbox.moe/hbjacu.mp4" type="video/mp4">
+            </video>
+            <div class="banner-gradient"></div>
+        </div>
+
+        <div class="content-padding">
+            <div class="profile-card">
+                <div class="profile-img-wrapper">
+                    <img src="picture/profil.jpg" alt="Profile" class="profile-img">
+                </div>
+                <h2>IBoyCloud <i class="fas fa-check-circle verified"></i></h2>
+                
+                <div class="social-box">
+                    <a href="https://lynk.id/bayzuu"><i class="fas fa-link"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VbBsAy17T8bbFQZ9y410"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://tiktok.com/@xiao_bayu"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item" onclick="openModal('modal-ewallet')">
+                    <i class="fas fa-wallet"></i><span>E-WALLET</span>
+                </div>
+                <div class="menu-item" onclick="openModal('modal-bank')">
+                    <i class="fas fa-university"></i><span>BANK TRANSFER</span>
+                </div>
+                <div class="menu-item qris-wide" onclick="openModal('modal-qris')">
+                    <i class="fas fa-qrcode"></i><span>KLIK QRIS PEMBAYARAN</span>
+                </div>
+
+                <div class="music-card">
+                    <img src="picture/lagu.jpg" class="music-img">
+                    <div class="music-info">
+                        <h4>IBoyCloud Vibes</h4>
+                        <div class="controls">
+                            <button class="play-btn" id="playBtn" onclick="toggleMusic()"><i class="fas fa-play"></i></button>
+                            <div class="seek-container" onclick="seek(event)"><div class="seek-bar" id="seekBar"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="myAudio" src="lagu.mp3" loop></audio>
+
+    <div class="modal" id="modal-ewallet" onclick="closeModal(event)">
+        <div class="modal-body">
+            <h3 class="modal-title">Metode E-Wallet</h3>
+            <div class="pay-row">
+                <div class="pay-brand"><img src="picture/dana.png" alt="Dana"><div class="pay-info"><h4>DANA</h4><p id="t-dana">083109105308</p></div></div>
+                <button class="btn-copy" onclick="copy('t-dana')">SALIN</button>
+            </div>
+            <div class="pay-row">
+                <div class="pay-brand"><img src="picture/gopay.png" alt="Gopay"><div class="pay-info"><h4>GOPAY</h4><p id="t-gopay">083109105308</p></div></div>
+                <button class="btn-copy" onclick="copy('t-gopay')">SALIN</button>
+            </div>
+            <div class="pay-row">
+                <div class="pay-brand"><img src="picture/ovo.png" alt="OVO"><div class="pay-info"><h4>OVO</h4><p id="t-ovo">083109105308</p></div></div>
+                <button class="btn-copy" onclick="copy('t-ovo')">SALIN</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-bank" onclick="closeModal(event)">
+        <div class="modal-body">
+            <h3 class="modal-title">Metode Bank</h3>
+            <div class="pay-row">
+                <div class="pay-brand"><img src="picture/seabank.png" alt="SeaBank"><div class="pay-info"><h4>SEABANK</h4><p id="t-sea">901102551341</p></div></div>
+                <button class="btn-copy" onclick="copy('t-sea')">SALIN</button>
+            </div>
+            <div class="pay-row">
+                <div class="pay-brand"><img src="picture/bri.png" alt="BRI"><div class="pay-info"><h4>BANK BRI</h4><p id="t-bri">08297001</p></div></div>
+                <button class="btn-copy" onclick="copy('t-bri')">SALIN</button>
+            </div>
+            <div class="pay-row">
+                <div class="pay-brand"><img src="picture/jago.png" alt="Jago"><div class="pay-info"><h4>BANK JAGO</h4><p id="t-jago">103118193726</p></div></div>
+                <button class="btn-copy" onclick="copy('t-jago')">SALIN</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-qris" onclick="closeModal(event)">
+        <div class="modal-body">
+            <h3 class="modal-title">QRIS Payment</h3>
+            <img src="picture/qris.jpg" class="qris-img">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
